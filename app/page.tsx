@@ -197,9 +197,6 @@ export default async function Home({ searchParams }: HomeProps) {
                   {t.hero.secondaryCta}
                 </a>
               </div>
-              <p className="mt-6 font-mono-label text-[0.62rem] text-white/40">
-                {t.hero.photoCredit}
-              </p>
             </div>
           </div>
         </section>

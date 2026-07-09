@@ -41,9 +41,8 @@ const translations = {
         "Investigo cómo operar y proteger redes eléctricas con mayor seguridad, usando mediciones sincrofasoriales, control de área extendida y herramientas de apoyo a la decisión.",
       cta: "Contáctame",
       secondaryCta: "Ver publicaciones",
-      photoAlt:
-        "Retrato del Dr. Diego Echeverría. Placeholder pendiente de reemplazo con foto personal.",
-      photoCredit: "Foto pendiente — reemplazar con tu retrato.",
+      photoAlt: "Retrato profesional del Dr. Diego Echeverría.",
+      photoCredit: "",
       motifLabel: "Motivo visual: modo de oscilación (análisis modal PMU)",
     },
     about: {
@@ -323,9 +322,8 @@ const translations = {
         "I study how to operate and protect power grids more securely, using synchrophasor measurements, wide-area control, and decision-support tools.",
       cta: "Contact me",
       secondaryCta: "View publications",
-      photoAlt:
-        "Portrait of Dr. Diego Echeverría. Placeholder pending replacement with a personal photo.",
-      photoCredit: "Photo pending — replace with your portrait.",
+      photoAlt: "Professional portrait of Dr. Diego Echeverría.",
+      photoCredit: "",
       motifLabel: "Visual motif: oscillation mode (PMU modal analysis)",
     },
     about: {

@@ -227,25 +227,6 @@ body {
     no-repeat left center / contain;
 }
 
-.portrait-frame {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
-  background: var(--slate-deep);
-}
-
-.portrait-frame::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    transparent 55%,
-    rgba(21, 32, 43, 0.35) 100%
-  );
-}
-
 .featured-pub {
   position: relative;
   border-top: 2px solid var(--signal);
