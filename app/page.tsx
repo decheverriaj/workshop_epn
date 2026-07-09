@@ -14,13 +14,13 @@ type HomeProps = {
 function LanguageSwitch({ lang, label }: { lang: Lang; label: string }) {
   return (
     <div
-      className="lang-switch inline-flex items-center rounded border border-line bg-panel/90 p-0.5 text-sm shadow-sm backdrop-blur"
+      className="lang-switch inline-flex items-center rounded-sm border border-line bg-panel/90 p-0.5 text-sm shadow-sm backdrop-blur"
       role="group"
       aria-label={label}
     >
       <a
         href={langHref("en")}
-        className="inline-flex min-h-10 items-center rounded-[3px] px-3 py-1.5 font-medium text-ink-soft transition-colors hover:text-ink"
+        className="inline-flex min-h-10 items-center rounded-[2px] px-3 py-1.5 font-medium text-ink-soft transition-colors hover:text-ink"
         aria-current={lang === "en" ? "true" : undefined}
         hrefLang="en"
       >
@@ -28,7 +28,7 @@ function LanguageSwitch({ lang, label }: { lang: Lang; label: string }) {
       </a>
       <a
         href={langHref("es")}
-        className="inline-flex min-h-10 items-center rounded-[3px] px-3 py-1.5 font-medium text-ink-soft transition-colors hover:text-ink"
+        className="inline-flex min-h-10 items-center rounded-[2px] px-3 py-1.5 font-medium text-ink-soft transition-colors hover:text-ink"
         aria-current={lang === "es" ? "true" : undefined}
         hrefLang="es"
       >
@@ -40,9 +40,34 @@ function LanguageSwitch({ lang, label }: { lang: Lang; label: string }) {
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="font-mono-label text-[0.72rem] font-medium text-signal-deep">
+    <p className="font-mono-label text-[0.7rem] font-medium text-signal-deep">
       {children}
     </p>
+  );
+}
+
+function OscillationRibbon({
+  className = "",
+  animated = false,
+}: {
+  className?: string;
+  animated?: boolean;
+}) {
+  return (
+    <svg
+      className={`oscillation-ribbon ${className}`}
+      viewBox="0 0 256 32"
+      aria-hidden
+    >
+      <path
+        className={animated ? "oscillation-draw" : undefined}
+        d="M0 16 C16 6 28 26 44 16 S72 6 88 16 116 26 132 16 160 6 176 16 204 26 220 16 244 6 256 16"
+      />
+      <path
+        d="M0 16 C20 22 36 10 52 16 S84 22 100 16 132 10 148 16 180 22 196 16 228 10 256 16"
+        opacity="0.35"
+      />
+    </svg>
   );
 }
 
@@ -57,7 +82,7 @@ export default async function Home({ searchParams }: HomeProps) {
     <div className="site-shell min-h-dvh text-ink">
       <RevealOnScroll />
 
-      <header className="sticky top-0 z-40 border-b border-line/80 bg-paper/90 backdrop-blur-md">
+      <header className="sticky top-0 z-40 border-b border-line/70 bg-paper/88 backdrop-blur-md">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
           <a
             href="#inicio"
@@ -91,7 +116,7 @@ export default async function Home({ searchParams }: HomeProps) {
           <LanguageSwitch lang={lang} label={t.nav.langSwitchLabel} />
         </div>
         <nav
-          className="flex gap-4 overflow-x-auto border-t border-line/60 px-5 py-2.5 text-sm text-ink-soft sm:px-8 lg:hidden"
+          className="flex gap-4 overflow-x-auto border-t border-line/50 px-5 py-2.5 text-sm text-ink-soft sm:px-8 lg:hidden"
           aria-label="Mobile"
         >
           <a className="link-quiet whitespace-nowrap" href="#sobre">
@@ -128,65 +153,53 @@ export default async function Home({ searchParams }: HomeProps) {
               fill
               priority
               sizes="100vw"
-              className="object-cover object-center"
+              className="object-cover object-[center_18%] lg:object-[68%_18%]"
             />
-            <div className="hero-plane absolute inset-0" aria-hidden />
+            <div className="hero-atmosphere absolute inset-0" aria-hidden />
+            <div className="hero-portrait-veil absolute inset-0" aria-hidden />
           </div>
 
-          <div className="relative z-10 mx-auto flex min-h-[calc(100svh-6.5rem)] max-w-6xl items-end px-5 pb-12 pt-14 sm:px-8 sm:pb-16 lg:min-h-[calc(100svh-3.75rem)]">
-            <div className="grid w-full items-end gap-10 lg:grid-cols-[minmax(0,1.35fr)_auto]">
-              <div className="max-w-2xl text-white">
-                <p className="motion-fade-up font-mono-label text-[0.72rem] text-signal-soft">
-                  {t.hero.affiliation}
-                </p>
-                <h1
-                  id="hero-name"
-                  className="motion-fade-up motion-fade-up-delay mt-4 font-display text-[2.6rem] leading-[1.05] font-semibold tracking-tight sm:text-5xl md:text-6xl"
-                >
-                  {t.hero.name}
-                  <span className="ml-2 align-top font-mono-label text-sm font-medium text-signal-soft sm:text-base">
-                    {t.hero.credential}
-                  </span>
-                </h1>
-                <div
-                  className="motion-underline mt-5 h-0.5 w-20 bg-signal"
-                  aria-hidden
-                />
-                <p className="motion-fade-up motion-fade-up-delay mt-5 text-lg text-white/90 sm:text-xl">
-                  {t.hero.role}
-                </p>
-                <p className="motion-fade-up motion-fade-up-delay-2 mt-3 max-w-xl text-base leading-relaxed text-white/80 sm:text-lg">
-                  {t.hero.summary}
-                </p>
-                <div className="motion-fade-up motion-fade-up-delay-2 mt-8 flex flex-wrap items-center gap-3">
-                  <a
-                    href="#contacto"
-                    className="btn-primary inline-flex min-h-11 items-center rounded bg-signal px-5 py-2.5 text-sm font-semibold text-white"
-                  >
-                    {t.hero.cta}
-                  </a>
-                  <a
-                    href="#publicaciones"
-                    className="btn-ghost inline-flex min-h-11 items-center rounded border border-white/40 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur"
-                  >
-                    {t.hero.secondaryCta}
-                  </a>
-                </div>
-                <p className="mt-6 text-xs text-white/50">{t.hero.photoCredit}</p>
-              </div>
-
-              <div
-                className="motion-fade-in mb-2 hidden justify-self-end lg:block"
-                aria-hidden
-                title={t.hero.motifLabel}
+          <div className="relative z-10 mx-auto flex min-h-[calc(100svh-6.5rem)] max-w-6xl items-end px-5 pb-12 pt-14 sm:px-8 sm:pb-16 lg:min-h-[calc(100svh-3.75rem)] lg:items-end lg:pb-16">
+            <div className="max-w-xl text-white">
+              <p className="motion-fade-up font-mono-label text-[0.7rem] text-signal-soft">
+                {t.hero.affiliation}
+              </p>
+              <h1
+                id="hero-name"
+                className="motion-fade-up motion-fade-up-delay mt-4 font-display text-[2.55rem] leading-[1.02] font-bold tracking-tight sm:text-5xl md:text-[3.45rem]"
               >
-                <div className="phasor-dial">
-                  <span className="phasor-hub" />
-                </div>
-                <p className="mt-3 text-right font-mono-label text-[0.65rem] text-white/45">
-                  {t.hero.motifLabel}
-                </p>
+                {t.hero.name}
+              </h1>
+              <p className="motion-fade-up motion-fade-up-delay mt-3 font-mono-label text-[0.72rem] text-white/65">
+                {t.hero.credential} · {t.hero.focus}
+              </p>
+              <div className="motion-fade-up motion-fade-up-delay mt-5">
+                <OscillationRibbon className="hero-ribbon" animated />
+                <p className="sr-only">{t.hero.motifLabel}</p>
               </div>
+              <p className="motion-fade-up motion-fade-up-delay-2 mt-5 text-lg text-white/90 sm:text-xl">
+                {t.hero.role}
+              </p>
+              <p className="motion-fade-up motion-fade-up-delay-2 mt-3 max-w-lg text-base leading-relaxed text-white/78 sm:text-lg">
+                {t.hero.summary}
+              </p>
+              <div className="motion-fade-up motion-fade-up-delay-2 mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href="#contacto"
+                  className="btn-primary inline-flex min-h-11 items-center rounded-sm bg-signal px-5 py-2.5 text-sm font-semibold text-white"
+                >
+                  {t.hero.cta}
+                </a>
+                <a
+                  href="#publicaciones"
+                  className="btn-ghost inline-flex min-h-11 items-center rounded-sm border border-white/40 bg-white/10 px-5 py-2.5 text-sm font-semibold text-white backdrop-blur"
+                >
+                  {t.hero.secondaryCta}
+                </a>
+              </div>
+              <p className="mt-6 font-mono-label text-[0.62rem] text-white/40">
+                {t.hero.photoCredit}
+              </p>
             </div>
           </div>
         </section>
@@ -209,7 +222,7 @@ export default async function Home({ searchParams }: HomeProps) {
               <p className="text-ink">{t.about.lead}</p>
               <p>{t.about.body}</p>
             </div>
-            <aside className="border-l-2 border-signal/40 pl-6">
+            <aside className="border-l-2 border-signal/45 pl-6">
               <h3 className="font-display text-lg font-semibold text-slate-deep">
                 {t.about.rolesTitle}
               </h3>
@@ -227,7 +240,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <section
           id="trayectoria"
           aria-labelledby="trajectory-title"
-          className="border-y border-line/80 bg-paper-deep/50"
+          className="border-y border-line/70 bg-paper-deep/55"
         >
           <div className="reveal-on-scroll mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
             <SectionLabel>{t.nav.trajectory}</SectionLabel>
@@ -240,21 +253,37 @@ export default async function Home({ searchParams }: HomeProps) {
             <p className="mt-4 max-w-2xl text-lg text-ink-soft">
               {t.trajectory.lead}
             </p>
-            <ol className="timeline mt-12 max-w-3xl">
-              {t.trajectory.items.map((item) => (
-                <li key={`${item.year}-${item.title}`} className="timeline-item">
-                  <p className="font-mono-label text-[0.72rem] text-signal-deep">
-                    {item.year}
-                  </p>
-                  <h3 className="mt-2 font-display text-xl font-semibold text-slate-deep">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 max-w-xl text-base leading-relaxed text-ink-soft">
-                    {item.detail}
-                  </p>
-                </li>
-              ))}
-            </ol>
+            <div className="timeline relative mt-14 max-w-3xl">
+              <div className="timeline-track" aria-hidden />
+              <div className="timeline-wave" aria-hidden>
+                <svg viewBox="0 0 40 480" preserveAspectRatio="none">
+                  <path
+                    d="M20 0 C28 30 12 60 20 90 S28 150 20 180 12 240 20 270 28 330 20 360 12 420 20 450 28 480 20 480"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="1.25"
+                  />
+                </svg>
+              </div>
+              <ol className="relative">
+                {t.trajectory.items.map((item) => (
+                  <li
+                    key={`${item.year}-${item.title}`}
+                    className="timeline-item"
+                  >
+                    <p className="font-mono-label text-[0.7rem] text-signal-deep">
+                      {item.year}
+                    </p>
+                    <h3 className="mt-2 font-display text-xl font-semibold text-slate-deep">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 max-w-xl text-base leading-relaxed text-ink-soft">
+                      {item.detail}
+                    </p>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
         </section>
 
@@ -275,7 +304,7 @@ export default async function Home({ searchParams }: HomeProps) {
             {t.research.items.map((item, index) => (
               <article
                 key={item.title}
-                className={`research-row border-b border-line px-0 py-8 sm:px-6 ${
+                className={`research-row border-b border-line px-0 py-9 sm:px-7 ${
                   index % 2 === 0 ? "sm:border-r" : ""
                 }`}
               >
@@ -293,7 +322,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <section
           id="publicaciones"
           aria-labelledby="publications-title"
-          className="border-y border-line/80 bg-paper-deep/70"
+          className="border-y border-line/70 bg-paper-deep/65"
         >
           <div className="reveal-on-scroll mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="flex flex-wrap items-end justify-between gap-4">
@@ -313,7 +342,7 @@ export default async function Home({ searchParams }: HomeProps) {
                 href={t.contact.scholarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-quiet min-h-11 inline-flex items-center text-sm font-semibold text-signal-deep underline-offset-4 hover:underline"
+                className="link-quiet inline-flex min-h-11 items-center text-sm font-semibold text-signal-deep underline-offset-4 hover:underline"
               >
                 {t.publications.scholarLabel}
               </a>
@@ -322,12 +351,12 @@ export default async function Home({ searchParams }: HomeProps) {
             {featuredPubs.map((pub) => (
               <article
                 key={`featured-${pub.title}`}
-                className="mt-12 border-l-4 border-signal bg-panel/80 px-6 py-7 sm:px-8"
+                className="featured-pub mt-12 px-6 py-8 sm:px-8"
               >
                 <p className="font-mono-label text-[0.68rem] text-signal-deep">
                   {t.publications.featuredLabel} · {pub.year}
                 </p>
-                <h3 className="mt-3 font-display text-2xl font-semibold leading-snug text-slate-deep">
+                <h3 className="mt-3 max-w-3xl font-display text-2xl font-semibold leading-snug text-slate-deep">
                   {pub.title}
                 </h3>
                 <p className="mt-3 text-sm font-medium text-ink-soft">
@@ -376,7 +405,7 @@ export default async function Home({ searchParams }: HomeProps) {
             {t.teaching.items.map((course) => (
               <li
                 key={course.title}
-                className="grid gap-2 border-l-2 border-slate/25 pl-5 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] sm:gap-10"
+                className="grid gap-2 border-l-2 border-signal/30 pl-5 sm:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] sm:gap-10"
               >
                 <h3 className="font-display text-xl font-semibold text-slate-deep">
                   {course.title}
@@ -395,7 +424,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <section
           id="charlas"
           aria-labelledby="talks-title"
-          className="border-y border-line/80 bg-paper-deep/45"
+          className="border-y border-line/70 bg-paper-deep/45"
         >
           <div className="reveal-on-scroll mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
             <div className="flex flex-wrap items-center gap-3">
@@ -447,16 +476,13 @@ export default async function Home({ searchParams }: HomeProps) {
             {t.quotes.title}
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">{t.quotes.lead}</p>
-          <div className="mt-12 grid gap-12 md:grid-cols-2">
+          <div className="mt-12 grid gap-14 md:grid-cols-2">
             {t.quotes.items.map((item) => (
-              <blockquote key={item.attribution} className="relative">
-                <span className="quote-mark" aria-hidden>
-                  “
-                </span>
-                <p className="mt-2 font-display text-xl leading-relaxed text-slate-deep sm:text-2xl">
+              <blockquote key={item.attribution} className="quote-frame">
+                <p className="font-display text-xl leading-relaxed text-slate-deep sm:text-2xl">
                   {item.quote}
                 </p>
-                <footer className="mt-5 font-mono-label text-[0.72rem] text-ink-soft">
+                <footer className="mt-5 font-mono-label text-[0.7rem] text-ink-soft">
                   {item.attribution}
                 </footer>
               </blockquote>
@@ -467,7 +493,7 @@ export default async function Home({ searchParams }: HomeProps) {
         <section
           id="estudiantes"
           aria-labelledby="faq-title"
-          className="border-y border-line/80 bg-paper-deep/70"
+          className="border-y border-line/70 bg-paper-deep/65"
         >
           <div className="reveal-on-scroll mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
             <SectionLabel>{t.nav.faq}</SectionLabel>
@@ -507,9 +533,13 @@ export default async function Home({ searchParams }: HomeProps) {
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-ink-soft">{t.contact.lead}</p>
 
-          <div className="mt-12 grid gap-10 border-t-2 border-signal/50 pt-10 sm:grid-cols-[1.3fr_0.7fr]">
+          <div className="mt-10">
+            <OscillationRibbon />
+          </div>
+
+          <div className="mt-10 grid gap-10 border-t-2 border-signal/45 pt-10 sm:grid-cols-[1.3fr_0.7fr]">
             <div>
-              <p className="font-mono-label text-[0.72rem] text-ink-soft">
+              <p className="font-mono-label text-[0.7rem] text-ink-soft">
                 {t.contact.emailLabel}
               </p>
               <a
@@ -521,7 +551,7 @@ export default async function Home({ searchParams }: HomeProps) {
               <p className="mt-4 text-base text-ink-soft">{t.contact.location}</p>
               <a
                 href={`mailto:${t.contact.email}`}
-                className="btn-primary mt-8 inline-flex min-h-11 items-center rounded bg-signal px-5 py-2.5 text-sm font-semibold text-white"
+                className="btn-primary mt-8 inline-flex min-h-11 items-center rounded-sm bg-signal px-5 py-2.5 text-sm font-semibold text-white"
               >
                 {t.contact.cta}
               </a>
@@ -531,7 +561,7 @@ export default async function Home({ searchParams }: HomeProps) {
                 href={t.contact.linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-quiet min-h-11 inline-flex items-center text-base font-semibold text-ink"
+                className="link-quiet inline-flex min-h-11 items-center text-base font-semibold text-ink"
               >
                 {t.contact.linkedinLabel}
               </a>
@@ -539,7 +569,7 @@ export default async function Home({ searchParams }: HomeProps) {
                 href={t.contact.scholarUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="link-quiet min-h-11 inline-flex items-center text-base font-semibold text-ink"
+                className="link-quiet inline-flex min-h-11 items-center text-base font-semibold text-ink"
               >
                 {t.contact.scholarLabel}
               </a>

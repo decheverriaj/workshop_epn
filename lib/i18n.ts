@@ -42,9 +42,9 @@ const translations = {
       cta: "Contáctame",
       secondaryCta: "Ver publicaciones",
       photoAlt:
-        "Retrato del Dr. Diego Echeverría. Placeholder elegante pendiente de reemplazo con foto personal.",
-      photoCredit: "Foto pendiente — reemplazar con retrato personal.",
-      motifLabel: "Motivo visual: ángulo fasorial (PMU)",
+        "Retrato del Dr. Diego Echeverría. Placeholder pendiente de reemplazo con foto personal.",
+      photoCredit: "Foto pendiente — reemplazar con tu retrato.",
+      motifLabel: "Motivo visual: modo de oscilación (análisis modal PMU)",
     },
     about: {
       title: "Operación real, investigación aplicada",
@@ -324,9 +324,9 @@ const translations = {
       cta: "Contact me",
       secondaryCta: "View publications",
       photoAlt:
-        "Portrait of Dr. Diego Echeverría. Elegant placeholder pending replacement with a personal photo.",
-      photoCredit: "Photo pending — replace with a personal portrait.",
-      motifLabel: "Visual motif: phasor angle (PMU)",
+        "Portrait of Dr. Diego Echeverría. Placeholder pending replacement with a personal photo.",
+      photoCredit: "Photo pending — replace with your portrait.",
+      motifLabel: "Visual motif: oscillation mode (PMU modal analysis)",
     },
     about: {
       title: "Real operation, applied research",
