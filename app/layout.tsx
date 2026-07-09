@@ -1,19 +1,25 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
-import { IBM_Plex_Sans, Sora } from "next/font/google";
+import { IBM_Plex_Mono, Source_Sans_3, Syne } from "next/font/google";
 import "./globals.css";
 import { getDictionary, type Lang } from "@/lib/i18n";
 
-const display = Sora({
+const display = Syne({
   variable: "--font-display",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["500", "600", "700", "800"],
 });
 
-const body = IBM_Plex_Sans({
+const body = Source_Sans_3({
   variable: "--font-body",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const mono = IBM_Plex_Mono({
+  variable: "--font-mono",
+  subsets: ["latin"],
+  weight: ["400", "500"],
 });
 
 const siteUrl =
@@ -50,7 +56,7 @@ export default async function RootLayout({
   return (
     <html
       lang={lang}
-      className={`${display.variable} ${body.variable} h-full antialiased`}
+      className={`${display.variable} ${body.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">{children}</body>
     </html>
